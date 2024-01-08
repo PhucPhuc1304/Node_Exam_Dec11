@@ -21,15 +21,12 @@ const createCategory = async (req, res) => {
     try {
       const { name, order } = req.body;
       
-      // Validate input (add more validation if needed)
       if (!name || !order) {
         return res.status(400).json({ error: 'Name and order are required fields' });
       }
   
-      // Create a new category instance
       const newCategory = new Category({ name, order, isdelete: false });
   
-      // Save the category to the database
       await newCategory.save();
   
       res.status(201).json(newCategory);
